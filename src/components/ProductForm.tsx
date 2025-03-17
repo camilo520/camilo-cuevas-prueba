@@ -2,11 +2,15 @@ import { Product } from "@/app/page";
 import React, { useState } from "react";
 
 interface ProductFormProps {
-  onAddProduct: (product: Omit<Product, "creacion">) => void;
+  products: Product[];
+  onAddProduct: (product: Omit<Product, "fecha">) => void;
 }
 
-const ProductForm: React.FC<ProductFormProps> = ({ onAddProduct }) => {
-  const [newProduct, setNewProduct] = useState<Omit<Product, "creacion">>({
+const ProductForm: React.FC<ProductFormProps> = ({
+  onAddProduct,
+  products,
+}) => {
+  const [newProduct, setNewProduct] = useState<Omit<Product, "fecha">>({
     codigo: 0,
     nombre: "",
     descripcion: "",
@@ -14,6 +18,14 @@ const ProductForm: React.FC<ProductFormProps> = ({ onAddProduct }) => {
   });
 
   const handleSubmit = () => {
+    const exists = products.some(
+      (product) => product.codigo === newProduct.codigo
+    );
+    if (exists) {
+      alert("El código ya está registrado. Intente con otro.");
+      return;
+    }
+
     onAddProduct(newProduct);
     setNewProduct({ codigo: 0, nombre: "", descripcion: "", cantidad: 0 });
   };
@@ -40,7 +52,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ onAddProduct }) => {
           setNewProduct({ ...newProduct, codigo: Number(e.target.value) })
         }
         onKeyDown={handleKeyDown}
-        className="border p-2 rounded no-arrows"
+        className="border p-2 rounded no-arrows "
       />
       <input
         type="text"
@@ -73,10 +85,10 @@ const ProductForm: React.FC<ProductFormProps> = ({ onAddProduct }) => {
       <button
         onClick={handleSubmit}
         disabled={!isSubmitted}
-        className={` text-white p-2 rounded ${
+        className={` text-white p-2 w-[40%] self-center rounded-3xl ${
           !isSubmitted
             ? "cursor-not-allowed bg-gray-500"
-            : "cursor-pointer bg-blue-500"
+            : "cursor-pointer bg-green-800 hover:bg-green-700 "
         }`}
       >
         Agregar Producto

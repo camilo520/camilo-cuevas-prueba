@@ -8,17 +8,17 @@ export interface Product {
   nombre: string;
   descripcion: string;
   cantidad: number;
-  creacion: string;
+  fecha: string;
 }
 
 export default function ProductApp() {
   const [products, setProducts] = useState<Product[]>([]);
   const [sortBy, setSortBy] = useState<keyof Product | "">("");
 
-  const addProduct = (newProduct: Omit<Product, "creacion">) => {
+  const addProduct = (newProduct: Omit<Product, "fecha">) => {
     setProducts([
       ...products,
-      { ...newProduct, creacion: new Date().toISOString() },
+      { ...newProduct, fecha: new Date().toISOString() },
     ]);
   };
 
@@ -29,8 +29,8 @@ export default function ProductApp() {
   const sortedProducts = [...products].sort((a, b) => {
     if (!sortBy) return 0;
 
-    if (sortBy === "creacion") {
-      return new Date(a.creacion) < new Date(b.creacion) ? -1 : 1;
+    if (sortBy === "fecha") {
+      return new Date(a.fecha) < new Date(b.fecha) ? -1 : 1;
     }
 
     const fieldA = a[sortBy];
@@ -48,16 +48,18 @@ export default function ProductApp() {
   });
 
   return (
-    <div className="p-4 flex flex-row justify-between">
+    <div className="p-4 flex flex-row justify-between gap-4 bg-white h-screen">
       <div className="w-1/2">
-        <h1 className="text-xl font-bold mb-4">Gestión de Productos</h1>
-        <ProductForm onAddProduct={addProduct} />
+        <h1 className="text-4xl font-bold mb-4 flex justify-center text-center">
+          Gestiona tus Productos
+        </h1>
+        <ProductForm products={products} onAddProduct={addProduct} />
 
-        <div className="mb-4 flex flex-col justify-start">
-          <label className="font-bold">Ordenar productos por: </label>
+        <div className="mb-4 flex flex-col justify-start ">
+          <label className="font-bold text-2xl">Ordenar productos por: </label>
           <select
             onChange={(e) => setSortBy(e.target.value as keyof Product)}
-            className="border p-2 rounded"
+            className="border p-2 rounded cursor-pointer text-sm"
           >
             <option value="">Seleccione...</option>
             <option value="codigo">Código</option>
@@ -67,11 +69,16 @@ export default function ProductApp() {
           </select>
         </div>
       </div>
-      <div className="flex w-1/2 justify-center pt-10">
-        <ProductList
-          products={sortedProducts}
-          onDeleteProduct={deleteProduct}
-        />
+      <div className="pt-10 flex w-1/2 justify-center ">
+        <div className="flex w-full justify-start flex-col gap-5 p-4 h-[650px] overflow-y-auto rounded-2xl border-1 bg-indigo-100">
+          <h2 className="text-2xl font-bold self-center text-center">
+            Tu lista de productos
+          </h2>
+          <ProductList
+            products={sortedProducts}
+            onDeleteProduct={deleteProduct}
+          />
+        </div>
       </div>
     </div>
   );
