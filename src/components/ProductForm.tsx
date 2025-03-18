@@ -1,5 +1,7 @@
 import { Product } from "@/app/page";
 import React, { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface ProductFormProps {
   products: Product[];
@@ -22,11 +24,21 @@ const ProductForm: React.FC<ProductFormProps> = ({
       (product) => product.codigo === newProduct.codigo
     );
     if (exists) {
-      alert("El código ya está registrado. Intente con otro.");
+      toast.error("El código ya está registrado. Intente con otro código.", {
+        position: "top-center",
+        autoClose: 3000,
+        isLoading: false,
+      });
       return;
     }
 
     onAddProduct(newProduct);
+    toast.success("¡Producto agregado exitosamente!", {
+      position: "top-center",
+      autoClose: 1000,
+      isLoading: false,
+    });
+
     setNewProduct({ codigo: 0, nombre: "", descripcion: "", cantidad: 0 });
   };
 
@@ -48,6 +60,7 @@ const ProductForm: React.FC<ProductFormProps> = ({
 
   return (
     <div className="mb-4 flex flex-col gap-3">
+      <ToastContainer />
       <input
         type="number"
         placeholder="Ingrese el código del producto..."
@@ -57,7 +70,7 @@ const ProductForm: React.FC<ProductFormProps> = ({
         }
         onKeyDown={handleKeyDown}
         onWheel={handleWheel}
-        className="border p-2 rounded no-arrows "
+        className="border p-2 rounded no-arrows"
       />
       <input
         type="text"
@@ -91,10 +104,10 @@ const ProductForm: React.FC<ProductFormProps> = ({
       <button
         onClick={handleSubmit}
         disabled={!isSubmitted}
-        className={` text-white p-2 w-[200px] self-center rounded-3xl  shadow-[0px_8px_17px_-2px_rgba(0,_0,_0,_0.2)] ${
+        className={`text-white p-2 w-[200px] self-center rounded-3xl shadow-[0px_8px_17px_-2px_rgba(0,_0,_0,_0.2)] ${
           !isSubmitted
             ? "cursor-not-allowed bg-gray-500"
-            : "cursor-pointer bg-green-800 hover:bg-green-700 "
+            : "cursor-pointer bg-green-800 hover:bg-green-700"
         }`}
       >
         Agregar Producto
