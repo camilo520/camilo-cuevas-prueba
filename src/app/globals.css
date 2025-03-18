@@ -42,3 +42,26 @@ body {
 .no-arrows {
   -moz-appearance: textfield;
 }
+
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #59549c;
+}
+
+::-webkit-scrollbar-track {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #59549c;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(90, 53, 119);
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 10px;
+}

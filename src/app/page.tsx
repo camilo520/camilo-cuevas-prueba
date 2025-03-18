@@ -1,6 +1,7 @@
 "use client";
 import ProductForm from "@/components/ProductForm";
 import ProductList from "@/components/ProductList";
+import Image from "next/image";
 import { useState } from "react";
 
 export interface Product {
@@ -48,36 +49,49 @@ export default function ProductApp() {
   });
 
   return (
-    <div className="p-4 flex flex-row justify-between gap-4 bg-white h-screen">
+    <div className="p-4 flex flex-row justify-between gap-4 bg-slate-100 h-screen ">
       <div className="w-1/2">
-        <h1 className="text-4xl font-bold mb-4 flex justify-center text-center">
+        <h1 className="text-4xl font-bold mb-5 flex justify-center text-center">
           Gestiona tus Productos
         </h1>
         <ProductForm products={products} onAddProduct={addProduct} />
-
-        <div className="mb-4 flex flex-col justify-start ">
-          <label className="font-bold text-2xl">Ordenar productos por: </label>
-          <select
-            onChange={(e) => setSortBy(e.target.value as keyof Product)}
-            className="border p-2 rounded cursor-pointer text-sm"
-          >
-            <option value="">Seleccione...</option>
-            <option value="codigo">Código</option>
-            <option value="nombre">Nombre</option>
-            <option value="cantidad">Cantidad</option>
-            <option value="creacion">Fecha de Creación</option>
-          </select>
+        <div className="flex flex-col justify-center p-10 gap-10">
+          <Image
+            src={"/assets/prueba-de-producto.png"}
+            alt="Imagen Producto"
+            width={200}
+            height={200}
+            className="flex self-center"
+          />
+          <p className="text-center font-bold text-2xl pl-30 pr-30">
+            Administra tus productos de manera eficiente
+          </p>
         </div>
       </div>
       <div className="pt-10 flex w-1/2 justify-center ">
-        <div className="flex w-full justify-start flex-col gap-5 p-4 h-[650px] overflow-y-auto rounded-2xl border-1 bg-indigo-100">
+        <div className="flex w-full justify-start flex-col gap-5 p-4 rounded-2xl shadow-[0px_8px_17px_-2px_rgba(0,_0,_0,_0.2)] bg-gradient-to-tl from-violet-300 to-indigo-200">
           <h2 className="text-2xl font-bold self-center text-center">
             Tu lista de productos
           </h2>
-          <ProductList
-            products={sortedProducts}
-            onDeleteProduct={deleteProduct}
-          />
+          <div className=" flex flex-col justify-start gap-3">
+            <label className="font-bold text-xl">Ordenar productos por: </label>
+            <select
+              onChange={(e) => setSortBy(e.target.value as keyof Product)}
+              className="border p-2 rounded cursor-pointer text-sm"
+            >
+              <option value="">Seleccione...</option>
+              <option value="codigo">Código</option>
+              <option value="nombre">Nombre</option>
+              <option value="cantidad">Cantidad</option>
+              <option value="creacion">Fecha de Creación</option>
+            </select>
+          </div>
+          <div className=" max-h-[600px] overflow-y-auto">
+            <ProductList
+              products={sortedProducts}
+              onDeleteProduct={deleteProduct}
+            />
+          </div>
         </div>
       </div>
     </div>
