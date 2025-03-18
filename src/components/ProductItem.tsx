@@ -7,6 +7,7 @@ interface ProductItemProps {
   onDelete: (codigo: number) => void;
 }
 
+//---Componente para mostrar un producto---
 const ProductItem: React.FC<ProductItemProps> = ({ product, onDelete }) => {
   return (
     <li className="p-2 ">

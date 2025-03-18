@@ -13,9 +13,13 @@ export interface Product {
 }
 
 export default function ProductApp() {
+  //---Estado para manejar los productos---
   const [products, setProducts] = useState<Product[]>([]);
+
+  //---Estado para manejar el orden de los productos---
   const [sortBy, setSortBy] = useState<keyof Product | "">("");
 
+  //---Función para agregar un producto a la lista---
   const addProduct = (newProduct: Omit<Product, "fecha">) => {
     setProducts([
       ...products,
@@ -23,10 +27,12 @@ export default function ProductApp() {
     ]);
   };
 
+  //---Función para eliminar un producto de la lista---
   const deleteProduct = (codigo: number) => {
     setProducts(products.filter((product) => product.codigo !== codigo));
   };
 
+  //---Función para ordenar los productos---
   const sortedProducts = [...products].sort((a, b) => {
     if (!sortBy) return 0;
 

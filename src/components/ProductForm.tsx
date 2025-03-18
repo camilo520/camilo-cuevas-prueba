@@ -12,6 +12,7 @@ const ProductForm: React.FC<ProductFormProps> = ({
   onAddProduct,
   products,
 }) => {
+  //---Estado para manejar los productos---
   const [newProduct, setNewProduct] = useState<Omit<Product, "fecha">>({
     codigo: 0,
     nombre: "",
@@ -19,6 +20,7 @@ const ProductForm: React.FC<ProductFormProps> = ({
     cantidad: 0,
   });
 
+  //---Función para agregar un producto a la lista---
   const handleSubmit = () => {
     const exists = products.some(
       (product) => product.codigo === newProduct.codigo
@@ -42,16 +44,19 @@ const ProductForm: React.FC<ProductFormProps> = ({
     setNewProduct({ codigo: 0, nombre: "", descripcion: "", cantidad: 0 });
   };
 
+  //---Función para evitar caracteres especiales en los inputs de tipo número---
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "-" || e.key === "e" || e.key === "+" || e.key === ".") {
       e.preventDefault();
     }
   };
 
+  //Función para evitar el scroll del raton en los inputs de tipo número---
   const handleWheel = (e: React.WheelEvent<HTMLInputElement>) => {
     e.currentTarget.blur();
   };
 
+  //---Condición para habilitar el botón de agregar producto---
   const isSubmitted =
     newProduct.codigo > 0 &&
     newProduct.nombre.trim() !== "" &&
