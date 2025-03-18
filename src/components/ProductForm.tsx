@@ -75,7 +75,7 @@ const ProductForm: React.FC<ProductFormProps> = ({
         }
         onKeyDown={handleKeyDown}
         onWheel={handleWheel}
-        className="border p-2 rounded no-arrows"
+        className="border rounded-lg p-2  no-arrows"
       />
       <input
         type="text"
@@ -84,7 +84,7 @@ const ProductForm: React.FC<ProductFormProps> = ({
         onChange={(e) =>
           setNewProduct({ ...newProduct, nombre: e.target.value })
         }
-        className="border p-2 rounded"
+        className="border p-2 rounded-lg"
       />
       <input
         type="text"
@@ -93,7 +93,7 @@ const ProductForm: React.FC<ProductFormProps> = ({
         onChange={(e) =>
           setNewProduct({ ...newProduct, descripcion: e.target.value })
         }
-        className="border p-2 rounded"
+        className="border p-2 rounded-lg"
       />
       <input
         type="number"
@@ -104,7 +104,7 @@ const ProductForm: React.FC<ProductFormProps> = ({
         }
         onKeyDown={handleKeyDown}
         onWheel={handleWheel}
-        className="border p-2 rounded no-arrows"
+        className="border p-2 rounded-lg no-arrows"
       />
       <button
         onClick={handleSubmit}
