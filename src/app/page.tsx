@@ -61,7 +61,7 @@ export default function ProductApp() {
           Gestiona tus Productos
         </h1>
         <ProductForm products={products} onAddProduct={addProduct} />
-        <div className="flex flex-col justify-center p-10 gap-10">
+        <div className="flex flex-col justify-center p-8 gap-10">
           <Image
             src={"/assets/prueba-de-producto.png"}
             alt="Imagen Producto"
@@ -83,7 +83,7 @@ export default function ProductApp() {
             <label className="font-bold text-xl">Ordenar productos por: </label>
             <select
               onChange={(e) => setSortBy(e.target.value as keyof Product)}
-              className="border p-2 rounded cursor-pointer text-sm"
+              className="border p-2  cursor-pointer text-sm bg-amber-50 rounded-lg"
             >
               <option value="">Seleccione...</option>
               <option value="codigo">Código</option>
