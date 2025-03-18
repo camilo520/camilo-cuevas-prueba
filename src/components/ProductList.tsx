@@ -7,6 +7,7 @@ interface ProductListProps {
   onDeleteProduct: (codigo: number) => void;
 }
 
+//---Componente para mostrar la lista de productos---
 const ProductList: React.FC<ProductListProps> = ({
   products,
   onDeleteProduct,
