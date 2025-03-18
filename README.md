@@ -1,36 +1,20 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Prueba tecnica de Camilo Cuevas
 
-## Getting Started
+## Sigue los siguientes pasos para ejecutar el proyecto en tu computador
 
-First, run the development server:
+1. Primero asegurate de que tienes npm y git instalado.
+   Para instalarlos te vas a los siguientes links:
+   
+   https://nodejs.org/es
+   
+   https://git-scm.com/
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+2.  Clonar el repositorio
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+    Puedes clonar el repositorio mediante el comando: git clone https://github.com/camilo520/camilo-cuevas-prueba.git o pulsando el botón verde de "<> Code", se te desplegara un menu al que puede escoger si quieres     clonar el repositorio usando GitHub Desktop o descargar el archivo .zip.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Cuando tengas el repositorio clonado o descargado el proyecto vas a ir al archivo y abriras la terminal del sistema (cmd) e ingresaras el siguiente comando: "npm install". Se te descargaran los archivos       
+   necesario para ejecutar la aplicación.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+4. Cuando se instalen todos los archivos ingresaras ahora el siguiente comando: "npm run dev". Cuando lo hagas en el mismo terminal se te mostrara en que puerto se te ha desplegado la aplicación, por defecto se   
+   ejecuta aquí: http://localhost:3000. Vas a ese puerto y encontraras la aplicación ejecutandose.
