@@ -36,6 +36,10 @@ const ProductForm: React.FC<ProductFormProps> = ({
     }
   };
 
+  const handleWheel = (e: React.WheelEvent<HTMLInputElement>) => {
+    e.currentTarget.blur();
+  };
+
   const isSubmitted =
     newProduct.codigo > 0 &&
     newProduct.nombre.trim() !== "" &&
@@ -43,7 +47,7 @@ const ProductForm: React.FC<ProductFormProps> = ({
     newProduct.cantidad > 0;
 
   return (
-    <div className="mb-4 flex flex-col gap-2">
+    <div className="mb-4 flex flex-col gap-3">
       <input
         type="number"
         placeholder="Ingrese el código del producto..."
@@ -52,6 +56,7 @@ const ProductForm: React.FC<ProductFormProps> = ({
           setNewProduct({ ...newProduct, codigo: Number(e.target.value) })
         }
         onKeyDown={handleKeyDown}
+        onWheel={handleWheel}
         className="border p-2 rounded no-arrows "
       />
       <input
@@ -80,12 +85,13 @@ const ProductForm: React.FC<ProductFormProps> = ({
           setNewProduct({ ...newProduct, cantidad: Number(e.target.value) })
         }
         onKeyDown={handleKeyDown}
+        onWheel={handleWheel}
         className="border p-2 rounded no-arrows"
       />
       <button
         onClick={handleSubmit}
         disabled={!isSubmitted}
-        className={` text-white p-2 w-[40%] self-center rounded-3xl ${
+        className={` text-white p-2 w-[200px] self-center rounded-3xl  shadow-[0px_8px_17px_-2px_rgba(0,_0,_0,_0.2)] ${
           !isSubmitted
             ? "cursor-not-allowed bg-gray-500"
             : "cursor-pointer bg-green-800 hover:bg-green-700 "

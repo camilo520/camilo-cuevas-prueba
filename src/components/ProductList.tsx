@@ -12,15 +12,27 @@ const ProductList: React.FC<ProductListProps> = ({
   onDeleteProduct,
 }) => {
   return (
-    <ul>
-      {products.map((product) => (
-        <ProductItem
-          key={product.codigo}
-          product={product}
-          onDelete={onDeleteProduct}
-        />
-      ))}
-    </ul>
+    <div>
+      {products.length ? (
+        <ul>
+          <div>
+            {products.map((product) => (
+              <ProductItem
+                key={product.codigo}
+                product={product}
+                onDelete={onDeleteProduct}
+              />
+            ))}
+          </div>
+        </ul>
+      ) : (
+        <div className="flex flex-col mt-50">
+          <p className="flex self-center justify-center text-center">
+            No tienes productos creados actualmente
+          </p>
+        </div>
+      )}
+    </div>
   );
 };
 
